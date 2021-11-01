@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link rel="stylesheet" href="./src/css/styles.css" />
+    <title>Album Search</title>
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="search-bar">
+      <div class="search-bar__container">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-bar__input"
+          placeholder="Search..."
+          onclick="expandSearchBar()"
+        />
+        <button class="search-bar__search-button" onclick="parseAlbumData()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- body -->
+    <main>
+      <!-- results counter -->
+      <div class="main__counter"></div>
+
+      <!-- grid -->
+      <section></section>
+    </main>
+
+    <!-- footer -->
+    <footer></footer>
+
+    <script src="./src/index.js"></script>
+  </body>
+</html>

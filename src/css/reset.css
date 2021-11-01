@@ -1,0 +1,9 @@
+html,
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  background-color: white;
+  height: 100vh;
+  background-color: var(--background-color);
+}
