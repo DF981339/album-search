@@ -6,7 +6,9 @@ enterToAddNewItem();
 async function getAlbumData(input) {
   const data = await fetch(
     `https://itunes.apple.com/search?term=${input}&media=music&entity=album&attribute=artistTerm&limit=200`
-  ).then((res) => res.json());
+  )
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
   return data;
 }
 
@@ -22,8 +24,6 @@ async function parseAlbumData() {
 
   let count = dataArray.resultCount;
 
-  renderResultCount(count, searchInput);
-
   dataArray.results.forEach((album) => {
     createAlbumCard(
       album.artworkUrl100,
@@ -31,6 +31,8 @@ async function parseAlbumData() {
       album.collectionName
     );
   });
+
+  renderResultCount(count, searchInput);
 
   // reset text field
   document.querySelector("#searchInput").value = "";
