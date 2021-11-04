@@ -1,6 +1,6 @@
 main {
   background-color: var(--light-blue);
-  padding-top: 80px;
+  padding: 80px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,4 +82,19 @@ article.main__album-card > .album-card__album-name {
     gap: 10px;
     margin: 20px 0;
   }
+}
+
+.main__showmore-button {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--dark-blue);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  display: none;
+}
+
+.main__showmore-button:active {
+  transform: scale(0.9);
 }

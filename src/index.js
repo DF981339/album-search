@@ -1,3 +1,5 @@
+let globalAlbumArray;
+
 // invoke when render
 setStartSearching();
 enterToAddNewItem();
@@ -20,11 +22,51 @@ async function parseAlbumData() {
   // get user input
   let searchInput = document.querySelector("#searchInput").value;
 
-  const dataArray = await getAlbumData(searchInput);
+  globalAlbumArray = await getAlbumData(searchInput);
 
-  let count = dataArray.resultCount;
+  let count = globalAlbumArray.resultCount;
 
-  dataArray.results.forEach((album) => {
+  if (count > 50) {
+    // get only first 50 results
+    let shortResults = globalAlbumArray.results.splice(0, 50);
+
+    shortResults.forEach((album) => {
+      createAlbumCard(
+        album.artworkUrl100,
+        album.artistName,
+        album.collectionName
+      );
+    });
+
+    // showing show-more button
+    showMoreButton(true);
+  } else {
+    globalAlbumArray.results.forEach((album) => {
+      createAlbumCard(
+        album.artworkUrl100,
+        album.artistName,
+        album.collectionName
+      );
+    });
+
+    // don't show show-more button
+    showMoreButton(false);
+  }
+
+  renderResultCount(count, searchInput);
+
+  // reset text field
+  document.querySelector("#searchInput").value = "";
+  shrinkSearchBar();
+}
+
+// show more results
+function showMoreResults() {
+  // get next 50 results
+  let nextFiftyResults = globalAlbumArray.results.splice(0, 50);
+
+  // createAlbumCard with the 50 results
+  nextFiftyResults.forEach((album) => {
     createAlbumCard(
       album.artworkUrl100,
       album.artistName,
@@ -32,11 +74,20 @@ async function parseAlbumData() {
     );
   });
 
-  renderResultCount(count, searchInput);
+  if (globalAlbumArray.results.length === 0) {
+    showMoreButton(false);
+  }
+}
 
-  // reset text field
-  document.querySelector("#searchInput").value = "";
-  shrinkSearchBar();
+// show or hide show-more button
+function showMoreButton(bool) {
+  let showMoreButton = document.querySelector("button.main__showmore-button");
+
+  if (bool) {
+    showMoreButton.style.display = "inline-block";
+  } else {
+    showMoreButton.style.display = "none";
+  }
 }
 
 // create album card
