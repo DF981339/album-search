@@ -6,22 +6,31 @@ enterToAddNewItem();
 
 // fetch data
 async function getAlbumData(input) {
-  const data = await fetch(
+  // const data = await fetch(
+  //   `https://itunes.apple.com/search?term=${input}&media=music&entity=album&attribute=artistTerm&limit=200`
+  // )
+  //   .then((res) => res.json())
+  //   .catch((err) => console.log(err));
+
+  const data = await fetchJsonp(
     `https://itunes.apple.com/search?term=${input}&media=music&entity=album&attribute=artistTerm&limit=200`
   )
     .then((res) => res.json())
     .catch((err) => console.log(err));
+
   return data;
 }
 
 // parse fetched data
 async function parseAlbumData() {
-  // clear gird
+  // clear gird hide show-more button
   clearGrid();
+  showMoreButton(false);
 
   // get user input
   let searchInput = document.querySelector("#searchInput").value;
 
+  setLoading();
   globalAlbumArray = await getAlbumData(searchInput);
 
   let count = globalAlbumArray.resultCount;
@@ -186,4 +195,12 @@ function shrinkSearchBar() {
   let searchBar = document.querySelector("div.search-bar__container");
 
   searchBar.style.width = "30%";
+}
+
+// set loading
+function setLoading() {
+  // target the counter div
+  let counter = document.querySelector("div.main__counter");
+
+  counter.innerHTML = "Loading...";
 }

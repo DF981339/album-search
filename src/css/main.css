@@ -7,6 +7,18 @@ main {
   align-items: center;
 }
 
+.main__counter-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 80px;
+  background-color: var(--light-blue);
+  z-index: 1;
+}
+
 .main__counter {
   width: 90%;
   height: 80px;
@@ -15,10 +27,6 @@ main {
   align-items: center;
   font-size: 25px;
   border-bottom: 1px solid black;
-  position: sticky;
-  top: 80px;
-  background-color: var(--light-blue);
-  z-index: 1;
 }
 
 section {
